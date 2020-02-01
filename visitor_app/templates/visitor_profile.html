@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="row">
+        <div class="card mb-2">
+            <div class="card-body">
+            	{% if visitor.image %}
+                <img src="{{ visitor.image.url}}" class="rounded-sm"  height="120px;" width="80px;" />
+                {% endif %}
+                <h3>{{visitor.name}}</h3>
+                <h5 class="card-title">{{ visitor.phone }}</h5>
+                <p class="card-text">{{ visitor.email }}</p>
+            </div>
+            
+        </div>
+</div>
+{% endblock %}

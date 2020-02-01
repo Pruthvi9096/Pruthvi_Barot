@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Author Detail</h1>
+
+  <p><strong>FirstName:</strong> <a href="">{{ author.first_name }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>LastName:</strong> {{ author.last_name }}</p>
+  <p><strong>Date Of Birth:</strong> {{ author.date_of_birth }}</p> 
+  <p><strong>Date Of Death:</strong> {{ author.date_of_death }}</p>
+  <p><a href="{% url 'author_update' author.pk %}" style="color: green;"> Edit </a> <a href="{% url 'author_delete' author.pk %}" style="margin-left: 25px; color: red;"> Delete </a></p>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-8 offset-md-3">
+<h1>Create Product</h1>
+
+<form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name }} 
+        </div>
+        <div class="form-group">
+            {{ form.category }}<a href="" onclick="open_form('/ecommerce/create_category/','mypopup',window,500,300)"> + </a>
+        </div>
+        <div class="form-group">
+            {{ form.preview_text }}
+        </div>
+        <div class="form-group">
+            {{ form.detail_text }}
+        </div>
+        <div class="form-group">
+            {{ form.price }}
+        </div>
+       <div class="form-group">
+            {{ form.image }}
+        </div>
+        <button type="submit" class="btn btn-primary">Create Product</button>
+    </form>
+</div>
+<script type="text/javascript">
+	// function open_form(){
+	// var popup = window.open("/ecommerce/create_category/","mypopup","width=500,height=300");
+	// }
+	function open_form(url, title, win, w, h) {
+    const y = win.top.outerHeight / 2 + win.top.screenY - ( h / 2);
+    const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
+    var a = win.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+y+', left='+x);
+	
+	} 
+	
+</script>
+<!-- <form id="category" method="post" enctype="multipart/form-data">{% csrf_token %}
+  {{ form2.as_p }}
+  <button type="submit">Create</button>
+</form> -->
+{%endblock%}
