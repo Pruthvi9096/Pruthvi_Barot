@@ -1,3 +1,2 @@
 # Pruthvi_Barot
-My first repository on Git Hub
-My name is pruthvi
+This contains all basic projects that require to learn django.
