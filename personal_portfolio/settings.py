@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 #------------_FOR Complete CMS installation------------
 # http://docs.django-cms.org/en/latest/introduction/01-install.html
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'ecommerce',
     'library',
     'searches',
+    'hotel_mgmt',
     # 'home',
     # 'social_django',
 
@@ -124,6 +126,9 @@ TEMPLATES = [
 
 CMS_TEMPLATES = [
     ('home.html', 'Home page template'),
+    ('fullwidth.html', 'Fullwidth'),
+    # ('sidebar_left.html', 'Sidebar Left'),
+    # ('sidebar_right.html', 'Sidebar Right')
 ]
 
 THUMBNAIL_HIGH_RESOLUTION = True

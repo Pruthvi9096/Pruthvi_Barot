@@ -40,6 +40,7 @@ urlpatterns = [
     path("library/", include("library.urls")),
     path("visitor_app/", include("visitor_app.urls")),
     path("ecommerce/",include("ecommerce.urls")),
+    path("hotel-mgmt/",include("hotel_mgmt.urls")),
     re_path(r'^password_reset/$', auth_views.PasswordResetView.as_view(),
         {'template_name': "registration/password_reset_form.html"},
         name='password_reset'),
