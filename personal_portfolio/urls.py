@@ -54,7 +54,8 @@ urlpatterns = [
         {'template_name': "registration/password_reset_complete.html"},
         name='password_reset_complete'),
     path('api/',include("myapi.urls")),
-    path('',include("snippet_test.urls"))
+    path('',include('cms.urls')),
+    # path('',include("snippet_test.urls"))
 
 ]
 if settings.DEBUG:

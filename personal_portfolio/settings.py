@@ -27,10 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+#------------_FOR Complete CMS installation------------
+# http://docs.django-cms.org/en/latest/introduction/01-install.html
 # Application definition
 
 INSTALLED_APPS = [
+    'djangocms_admin_style',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +54,27 @@ INSTALLED_APPS = [
     'searches',
     # 'home',
     # 'social_django',
+
+    #-----------------------CMS--------------------#
+    'django.contrib.sites',
+    'cms',
+    'menus',
+    'treebeard',
+    'sekizai',
+    'filer',
+    'easy_thumbnails',
+    'mptt',
+    'djangocms_text_ckeditor',
+    'djangocms_link',
+    'djangocms_file',
+    'djangocms_picture',
+    'djangocms_video',
+    'djangocms_googlemap',
+    'djangocms_snippet',
+    'djangocms_style',
+    'djangocms_column',
+
+
 ]
 
 MIDDLEWARE = [
@@ -61,7 +85,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
+    ]
 
 AUTHENTICATION_BACKENDS = [
  'social_core.backends.open_id.OpenIdAuth',
@@ -86,10 +114,26 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'sekizai.context_processors.sekizai',
+                'cms.context_processors.cms_settings',
+                'django.template.context_processors.i18n'
             ],
         },
     },
 ]
+
+CMS_TEMPLATES = [
+    ('home.html', 'Home page template'),
+]
+
+THUMBNAIL_HIGH_RESOLUTION = True
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters'
+)
 
 WSGI_APPLICATION = 'personal_portfolio.wsgi.application'
 
@@ -111,10 +155,22 @@ SOCIAL_AUTH_PIPELINE = (
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME':'django_db',
+        # 'USER': 'djangouser',
+        # 'PASSWORD': 'mypassword',
+        # 'HOST':'',
+        # 'PORT':'',
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
+# DATABASE_NAME = 'django_db'             # Or path to database file if using sqlite3.
+# DATABASE_USER = 'djangouser'             # Not used with sqlite3.
+# DATABASE_PASSWORD = 'mypassword'         # Not used with sqlite3.
+# DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+# DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 
 # Password validation
@@ -155,7 +211,14 @@ LOGIN_URL = '/account/login/'
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+SITE_ID = 1
+
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('de', 'German'),
+]
 
 TIME_ZONE = 'Asia/Kolkata'
 
