@@ -28,7 +28,8 @@ urlpatterns = [
    	path('view_all_visitor/save/<int:pk>/',views.save_info,name="save_info"),
    	path('edit_visitor_info/<int:pk>/',views.edit_info,name="edit_info"),
    	path('delete_visitor_info/<int:pk>/',views.delete_info,name="delete_info"),
-   	path('delete_department/<int:pk>/',views.delete_department,name="delete_department")
+   	path('delete_department/<int:pk>/',views.delete_department,name="delete_department"),
+    path('ajax/load-name/',views.load_name,name="ajax_load_name")
 ]
 if settings.DEBUG:
     # urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

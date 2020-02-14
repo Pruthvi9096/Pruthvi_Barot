@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block page_content %}
+{% block content %}
 <div class="col-md-8 offset-md-2">
 <h1>Create Visit</h1>
 
-<form action="save/" method="post">
+<form action="save/" method="post" id="visitForm" data-name-url="{% url 'ajax_load_name' %}" novalidate>
         {% csrf_token %}
         <div class="form-group">
             {{ form.name }} <span> <a href="{% url 'create_visitor' %}" class="btn"> + 
@@ -29,5 +29,26 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="{% url 'visit_index' %}" class="btn btn-primary">Back</a>
     </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $('#id_name').change(function(){
+            var url = $('#visitForm').attr("data-name-url");
+            var visitorId = $(this).val();
+
+            $.ajax({
+                url:url,
+                data:{
+                    'visitor':visitorId
+                },
+                success:function(data){
+                    console.log(data);
+                    $('#id_phone').val(data['phone']);
+                    $('#id_email').val(data['email']);
+                }
+            });
+            });
+        
+    </script>
+
 </div>
 {% endblock %}

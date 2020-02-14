@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from visitor_app.models import VisitFor,Department,Visitor,Visit
 from visitor_app.forms import VisitForm,VisitorForm,VisitForForm,DepartmentForm
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect,HttpResponse,JsonResponse
 import cv2
 from datetime import datetime
 import base64
@@ -279,3 +279,9 @@ def print_visitor_pass(request,pk):
     else:
         return HttpResponse("Error Rendering PDF", status=400)
 
+
+def load_name(request):
+    visitor = request.GET.get('visitor')
+    phone = Visitor.objects.get(pk=visitor).phone
+    email = Visitor.objects.get(pk=visitor).email
+    return JsonResponse({'phone':phone,'email':email})

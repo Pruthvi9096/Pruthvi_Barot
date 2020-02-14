@@ -29,4 +29,5 @@ class Reservation(models.Model):
 	customer = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
 	room_id  = models.ManyToManyField('Room',related_name='reservation')
 	total_price = models.FloatField()
+	
 
