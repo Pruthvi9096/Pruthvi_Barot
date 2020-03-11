@@ -37,8 +37,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'djangocms_admin_style',
-
+    
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,11 +58,12 @@ INSTALLED_APPS = [
     'library',
     'searches',
     'hotel_mgmt',
-    # 'home',
+    'users',
+    'home',
     # 'social_django',
 
     #-----------------------CMS--------------------#
-    'django.contrib.sites',
+    'djangocms_admin_style',
     'cms',
     'menus',
     'treebeard',
@@ -237,6 +238,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+# AUTH_USER_MODEL = 'users.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

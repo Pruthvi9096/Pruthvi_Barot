@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+    {% for message in messages %}
+    <div class="row">
+
+      <div class="alert alert-danger col-md-4">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+          {{ message }}
+        </div>
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Login</button>
+    <div>
+      <a href="{% url 'password_reset'%}">Forgot Password?</a>
+    </div>
+  </form>
+{% endblock %}
