@@ -1,0 +1,16 @@
+{% extends 'index_view.html' %}
+{% block pagecontent %}
+<div class="row">
+<div class="col-md-3">
+    <div class="card mb-2">
+        <img class="card-img-top" src="{{roomtype.room_image.url}}">
+        <div class="card-body">
+            <h5 class="card-title">{{ roomtype.room_type }}</h5>
+            <p class="card-text">{{ roomtype.facilities }}</p>
+            <p class="card-text">{{ roomtype.capacity }}</p>
+            <p class="card-text">{{ roomtype.price }}</p>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock pagecontent %}

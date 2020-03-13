@@ -1,0 +1,28 @@
+
+{% extends 'index_view.html' %}
+{% block pagecontent %}
+<a class="btn btn-primary mb-3" href="{% url 'room-types-create' %}">Create Room Type</a>
+<div class="row">
+
+{% for room_type in roomtype_list %}
+<div class="col-md-3" onclick="parent.location='{% url 'room-type-detail' room_type.id %}'">
+    <div class="card mb-2">
+        <img class="card-img-top" src="{{room_type.room_image.url}}">
+        <div class="card-body">
+            <h5 class="card-title">{{ room_type.room_type }}</h5>
+            <p class="card-text">
+            	<span>facilities: </span>
+            	<p style="height: 50px;">
+            	{% for fac in room_type.facilities.all %}
+            		<span class="badge badge-pill badge-info">{{fac.facility_name}}</span>
+            	{% endfor %}
+            	</p>
+            </p>
+            <p class="card-text"><span>Capacity: </span>{{ room_type.capacity }}<span> person</span></p>
+            <p class="card-text"><span>Price: </span>{{ room_type.price }}<span> $</span></p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock pagecontent %}
