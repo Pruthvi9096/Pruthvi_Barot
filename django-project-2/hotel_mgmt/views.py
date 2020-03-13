@@ -4,6 +4,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse
 from hotel_mgmt.forms import ReservationForm
+from django.http import HttpResponseRedirect,HttpResponse,JsonResponse
 
 
 def index(request):
@@ -67,5 +68,14 @@ def doReservation(request):
 	else:
 		form = ReservationForm()
 		return render(request,'reservation.html',{'form':form})
+
+def load_price(request):
+	list1 = dict(request.GET.lists()).get('room[]')
+	if list1:
+		room_list = list(map(int,list1))
+		rooms  = Room.objects.filter(id__in=room_list)
+		price = sum([line.room_type.price for line in rooms])
+		return JsonResponse({'price':price})
+	return JsonResponse({'price':0})
 
 	

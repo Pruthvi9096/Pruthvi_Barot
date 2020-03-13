@@ -15,5 +15,6 @@ urlpatterns = [
 	path('reservation-list/',views.ReservationListView.as_view(),name='reservation-list'),
 	path('reservation-detail/<int:pk>',views.ReservationDetailView.as_view(),name='reservation-detail'),
 	path('reservation/create',views.doReservation,name='reservation-create'),
+	path('ajax/load-price/',views.load_price,name="ajax_load_price")
 
 ]
