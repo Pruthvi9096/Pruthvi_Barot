@@ -5,7 +5,7 @@
 <div class="row">
 
 {% for room_type in roomtype_list %}
-<div class="col-md-3" onclick="parent.location='{% url 'room-type-detail' room_type.id %}'">
+<div class="col-md-3" onclick="parent.location='{% url 'get-rooms' room_type.pk %}'">
     <div class="card mb-2">
         <img class="card-img-top" src="{{room_type.room_image.url}}">
         <div class="card-body">

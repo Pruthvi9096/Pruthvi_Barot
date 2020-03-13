@@ -47,7 +47,7 @@ class RoomType(models.Model):
 class Room(models.Model):
 
 	class Meta:
-   		ordering = ['-id']
+   		ordering = ['id']
 
 
 	room_number = models.CharField(max_length=50,null=False,blank=False)
@@ -66,8 +66,15 @@ class Reservation(models.Model):
 	class Meta:
    		ordering = ['-id']
 
-	customer = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-	total_price = models.FloatField()
+	customer_name = models.CharField(max_length=150,null=False,blank=False)
+	customer_address     = models.TextField(null=False,blank=True)
+	customer_contact     = models.CharField(max_length=80,null=False)
+	customer_email       = models.EmailField(max_length=60,null=False)
+	room_type = models.ForeignKey(RoomType,null=True,on_delete=models.SET_NULL)
 	room_id  = models.ManyToManyField('Room',related_name='reservation')
 	days = models.DecimalField(max_digits=6, decimal_places=0,null=True)
+	total_price = models.FloatField()
+	checkOut_time = models.DateTimeField(null=True)
+	checkIn_time = models.DateTimeField(null=True)
+	created_on = models.DateTimeField(auto_now_add=True)
 

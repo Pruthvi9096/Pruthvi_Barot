@@ -1,1 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'index_view.html' %}
+{% block pagecontent %}
+<div class="row">
+	<style type="text/css">
+		.custom-card:onclick {
+  			background: #d4edda;
+  		}
+	</style>
+	{% for room in room_list %}
+		{% if room.reserved %}
+		<div class="card mx-2 mt-2 mb-2" style="width: 14rem;background-color: rgba(245, 245, 245, 1);opacity: .4;">
+		  <div class="card-body">
+		    <h5 class="card-title">{{room.room_number}}</h5>
+		  </div>
+		</div>
+		{% else %}
+		<div class="card custom-card mx-2 mt-2 mb-2" style="width: 14rem;">
+		  <div class="card-body">
+		    <h5 class="card-title">{{room.room_number}}</h5>
+		  </div>
+		</div>
+		{% endif %}
+	{% endfor %}
+</div>
+{% endblock pagecontent %}

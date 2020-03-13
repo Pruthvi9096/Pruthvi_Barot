@@ -1,1 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'index_view.html' %}
+{% block pagecontent %}
+<a class="btn btn-primary mb-3" href="{% url 'room-create' %}">Create Room</a>
+<table class="table table-hover">
+	<thead class="thead-dark">
+		<tr>
+			<td scope="col">Room Number</td>
+			<td scope="col">Room Type</td>
+			<td scope="col">Reserved ?</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for room in room_list %}
+			<tr>
+				<td scope="col">{{room.room_number}}</td>
+				<td scope="col">{{room.room_type}}</td>
+				<td scope="col">{{room.reserved}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+
+</table>
+{% endblock pagecontent %}

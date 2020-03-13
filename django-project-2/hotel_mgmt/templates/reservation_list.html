@@ -1,4 +1,33 @@
 {% extends 'index_view.html' %}
 {% block pagecontent %}
 <h3>Reservation List</h3>
+
+<a class="btn btn-primary" href="{% url 'reservation-create' %}">Make Reservation</a>
+<table class="table table-hover mt-3">
+	<thead class="thead-dark">
+		<tr>
+			<td scope="col">Customer Name</td>
+			<td scope="col">Contact</td>
+			<td scope="col">Room Type</td>
+			<td scope="col">Room Numbers</td>
+			<td scope="col">Days</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for reservation in reservation_list %}
+			<tr>
+				<td scope="col">{{reservation.customer_name}}</td>
+				<td scope="col">{{reservation.customer_contact}}</td>
+				<td scope="col">{{reservation.room_type.room_type}}</td>
+				<td scope="col">
+					{% for line in reservation.room_id.all %}
+            			<span class="badge badge-pill badge-info">{{line.room_number}}</span>
+            		{% endfor %}
+				</td>
+				<td scope="col">{{reservation.days}}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+
+</table>
 {% endblock pagecontent %}
