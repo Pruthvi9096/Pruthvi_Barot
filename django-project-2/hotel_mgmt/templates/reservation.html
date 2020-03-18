@@ -10,30 +10,40 @@
   </form>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
-  	var ary = []
-  	$(".form-check-input").change(function(){
-	  if($(this).is(":checked")){
-		ary.push(parseInt(this.value))
-		}
-	   else if($(this).is(":not(:checked)")){
-		let index = ary.indexOf(parseInt(this.value));
-		if (index > -1) { 
-		   ary.splice(index, 1);
-		 }
-		}
-	var url = $('#ReservationForm').attr("data-name-url");
-	console.log(ary);
-	$.ajax({
-                url:url,
-                data:{
-                    'room':ary
-                },
-                success:function(data){
-                    console.log(data);
-                    $('#id_total_price').val(data['price']);
-                }
-            });
-	});
+  	
+  	$("#id_room_id").change(function(){
+  	  var ary = []
+      $("#id_room_id option:selected").each(function()
+  	   {
+        ary.push($(this).val())
+       });
+
+    	var url = $('#ReservationForm').attr("data-name-url");
+    	$.ajax({
+              url:url,
+              data:{
+                  'room':ary,
+              },
+              success:function(data){
+                  console.log(data);
+                  $('#id_total_price').val(data['price']);
+              }
+          });
+    	});
+
+      $("#id_room_type").change(function () {
+          var url = $('#ReservationForm').attr("data-name-url");
+          var roomTypeId = $(this).val(); 
+          $.ajax({                      
+            url: url,                    
+            data: {
+              'roomtype': roomTypeId, 
+              },    
+            success: function (data) {
+              $("#id_room_id").html(data);
+            }
+          });
+        });
   </script>
 </div>
 {% endblock pagecontent %}

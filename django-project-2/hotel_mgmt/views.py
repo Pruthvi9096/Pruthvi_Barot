@@ -71,11 +71,19 @@ def doReservation(request):
 
 def load_price(request):
 	list1 = dict(request.GET.lists()).get('room[]')
+	print(request.GET)
+	print()
+	room_type_id = request.GET.get('roomtype')
 	if list1:
 		room_list = list(map(int,list1))
 		rooms  = Room.objects.filter(id__in=room_list)
 		price = sum([line.room_type.price for line in rooms])
 		return JsonResponse({'price':price})
-	return JsonResponse({'price':0})
+	if room_type_id:
+		room_type = RoomType.objects.get(pk=room_type_id)
+		rooms = room_type.room_set.all()
+		return render(request,'room_list_option.html',{'rooms':rooms})
+
+	return JsonResponse({})
 
 	
