@@ -84,6 +84,7 @@ def load_price(request):
 		rooms = room_type.room_set.all()
 		return render(request,'room_list_option.html',{'rooms':rooms})
 
-	return JsonResponse({})
+	return JsonResponse({'price':0,'rooms':Room.objects.none()})
 
 	
+

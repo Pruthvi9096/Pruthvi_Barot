@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('siteauth.urls')),
     path('hotel/',include('hotel_mgmt.urls')),
+    path('ajax_crud/',include('ajax_crud.urls')),
 ]
 if settings.DEBUG:
     from django.conf.urls.static import static
