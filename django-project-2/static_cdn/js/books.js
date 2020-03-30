@@ -1,9 +1,8 @@
 $(function () {
 
   $(".js-create-book").click(function () {
-    console.log("---calling---");
     $.ajax({
-      url: '/books/create/',
+      url: 'create/',
       type: 'get',
       dataType: 'json',
       beforeSend: function () {
