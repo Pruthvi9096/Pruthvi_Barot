@@ -25,21 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for book in books %}
-        <tr>
-          <td>{{ book.id }}</td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.get_book_type_display }}</td>
-          <td>{{ book.publication_date }}</td>
-          <td>{{ book.pages }}</td>
-          <td>{{ book.price }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="7" class="text-center bg-warning">No book</td>
-        </tr>
-      {% endfor %}
+      {% include 'partial_book_list.html' %}
     </tbody>
   </table>
 
@@ -48,41 +34,5 @@
       <div class="modal-content">
       </div>
     </div>
-
-<!-- <script type="text/javascript">
-  $(".js-create-book").click(function () {
-    $.ajax({
-      url: "{% url 'book_create'%}",
-      type: 'get',
-      dataType: 'json',
-      beforeSend: function () {
-        $("#modal-book").modal("show");
-      },
-      success: function (data) {
-        console.log(data);
-        $("#modal-book .modal-content").html(data.html_form);
-      }
-    });
-  });
-
-    $("#modal-book").on("submit", ".js-book-create-form", function () {
-    var form = $(this);
-    $.ajax({
-      url: form.attr("action"),
-      data: form.serialize(),
-      type: form.attr("method"),
-      dataType: 'json',
-      success: function (data) {
-        if (data.form_is_valid) {
-          alert("Book created!");  // <-- This is just a placeholder for now for testing
-        }
-        else {
-          $("#modal-book .modal-content").html(data.html_form);
-        }
-      }
-    });
-    return false;
-  });
-</script> -->
 
 {% endblock %}

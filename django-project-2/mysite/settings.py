@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'hotel_mgmt',
     'ajax_crud',
+    'annotation_example',
 ]
 
 

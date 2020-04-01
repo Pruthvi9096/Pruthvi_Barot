@@ -11,15 +11,23 @@ def book_list(request):
     return render(request, 'book_list.html', {'books': books})
 
 def book_create(request):
+    print("-----inside  view-----",request.method)
     data = {}
     if request.method == 'POST':
         form = BookForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
             form.save()
             data.update({'form_is_valid':True})
-            return redirect(reverse('book_list'))
+            books = Book.objects.all()
+            data.update({'html_book_list': render_to_string('partial_book_list.html', {
+                'books': books
+            })
+            })
+            # return redirect(reverse('book_list'))
         else:
             data.update({'form_is_valid':False})
+        return JsonResponse(data)
     else:
         form = BookForm()
     context = {'form': form}
