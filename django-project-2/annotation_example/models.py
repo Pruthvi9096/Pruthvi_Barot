@@ -16,3 +16,4 @@ class Choice(models.Model):
 	def __str__(self):
 		return "Choice: {}, Question:{}".format(self.choice_text, self.question.question_text)
 
+		
