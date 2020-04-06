@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-4">
+    <div *ngIf="list">
+        <ul>
+        <li *ngFor="let item of list" (click)="onSelect(item)">
+            {{item.title}}
+
+        </li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-md-4">
+        <app-product-detail [id]="id"></app-product-detail>
+    </div>
+</div>
