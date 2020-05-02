@@ -1,0 +1,41 @@
+<div *ngIf="tutorial">
+    <div class="card">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{tutorial.title}}</h5>
+            <div class="card-text">
+                <div>
+                    <label><strong>Description:</strong></label> {{ tutorial.description }}
+                </div>
+                <div>
+                    <label><strong>Status:</strong></label> {{ tutorial.published ? "Published" : "Pending" }}
+                </div>
+            </div>
+            <a href="/tutorials/{{ tutorial.id }}" class="btn btn-primary">Open</a>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="tutorialData">
+    <div class="card">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><label><strong>Title:</strong></label><input type="text" class="form-control col-md-12 mb-2" id="title" required name="title" [(ngModel)]="tutorialData.title" /></h5>
+            <div class="card-text">
+                <div>
+                    <label><strong>Description:</strong></label> <input class="form-control col-md-12 mb-2" id="description" required name="description" [(ngModel)]="tutorialData.description" />
+                </div>
+                <div>
+                    <label><strong>Status:</strong></label>{{ tutorialData.published ? "Published" : "Pending" }}
+                </div>
+            </div>
+            <button class="btn btn-primary mx-1" (click)="publishTutorial(tutorialData)">{{ tutorialData.published ? "Unpublish" : "Publish" }}</button>
+            <button class="btn btn-success mx-1" (click)="updateTutorial(tutorialData)">Update</button>
+            <a href="#" class="btn btn-danger mx-1" (click)="deleteTutorial(tutorialData.id)">Delete</a>
+        </div>
+    </div>
+</div>
