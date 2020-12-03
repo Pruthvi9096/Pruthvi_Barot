@@ -253,10 +253,3 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH,'media')
 MEDIA_URL = '/media/'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'pruthvib@meditab.com'
-EMAIL_HOST_PASSWORD = 'pruthvi@1998'
